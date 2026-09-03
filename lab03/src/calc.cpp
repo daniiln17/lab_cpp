@@ -36,21 +36,23 @@ double multiply(double a, double b) {
     return result;
 }
 
-// Функция возведения в степень 
 double power(double base, int exponent) {
-    double result = 1;
+    double result = 1.0;
+    int absExponent = exponent;
 
-    if (exponent == 0) {
-        return 1;
-    }
-
+    // Если степень отрицательная — работаем с модулем
     if (exponent < 0) {
-        base = 1.0 / base;
-        exponent = -exponent;
+        absExponent = -exponent;
     }
 
-    for (int i = 0; i < exponent; i++) {
-        result = multiply(result, base);
+    // Возведение в степень через цикл
+    for (int i = 0; i < absExponent; i++) {
+        result = result * base;
+    }
+
+    // Если степень отрицательная — берём обратное число
+    if (exponent < 0) {
+        result = 1.0 / result;
     }
 
     return result;
